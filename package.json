@@ -1,0 +1,56 @@
+{
+  "name": "taiko-android",
+  "version": "1.0.0",
+  "description": "A plugin to run web tests on android devices and emulator using Taiko",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saikrishna321/taiko-android.git"
+  },
+  "keywords": [
+    "taiko",
+    "android"
+  ],
+  "author": "saikrishna",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saikrishna321/taiko-android/issues"
+  },
+  "homepage": "https://github.com/saikrishna321/taiko-android#readme",
+  "dependencies": {
+    "adbkit": "^2.11.1",
+    "taiko": "git://github.com/getgauge/taiko.git"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.3.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.8.0",
+    "husky": "^2.1.0",
+    "prettier": "1.17.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "pretty-quick": "^1.10.0",
+    "lint-staged": "^8.1.4"
+  },
+  "lint-staged": {
+    "**/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write --single-quote",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
