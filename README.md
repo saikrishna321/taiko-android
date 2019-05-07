@@ -8,7 +8,7 @@
 
 A plugin to run web tests on android devices and emulator using Taiko
 
-[![Demo Doccou alpha](images/video.gif)](images/tandroid-final.mov)
+[![Demo Doccou alpha](images/video.gif)](https://youtu.be/HRdDJDA7S2I)
 ## Usage
 
 ```javascript
