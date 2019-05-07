@@ -7,7 +7,9 @@
     "lib"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "build": "babel src -d lib",
+    "prepublish": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,10 @@
   "homepage": "https://github.com/saikrishna321/taiko-android#readme",
   "dependencies": {
     "adbkit": "^2.11.1",
-    "taiko": "git://github.com/getgauge/taiko.git"
+    "taiko": "git://github.com/getgauge/taiko.git",
+    "portfinder": "1.0.20",
+    "npmlog": "^4.1.2",
+    "bluebird": "^3.5.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -37,6 +42,7 @@
     "eslint-plugin-import": "^2.8.0",
     "husky": "^2.1.0",
     "prettier": "1.17.0",
+    "jest": "^24.8.0",
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-prettier": "^3.0.1",
     "pretty-quick": "^1.10.0",
