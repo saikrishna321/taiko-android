@@ -27,6 +27,11 @@ class ABD {
     });
   }
 
+  async checkIfDevices() {
+    let devices = await adbClient.listDevices();
+    this.assert(devices);
+  }
+
   async openChrome(device) {
     adbClient
       .startActivity(device, {

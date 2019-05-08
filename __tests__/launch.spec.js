@@ -16,7 +16,7 @@ beforeEach(async () => {
 afterEach(async () => {
   await closeAndroidBrowser();
 });
-test('Should return speedindex and perceptualSpeedIndex', async () => {
+test('Should open browser and send events', async () => {
   await goto('http://github.com');
   await click('Sign up');
 });

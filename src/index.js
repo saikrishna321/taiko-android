@@ -15,11 +15,12 @@ export async function clientHandler(taiko) {
 
 export async function openAndroidBrowser() {
   adb = new ADB();
+  await adb.checkIfDevices();
   let tcpDetails = await adb.portForwardTcp();
   tcpProp = Object.assign({}, ...tcpDetails.map(tcp => ({ tcp })));
   await adb.openChrome(tcpProp.tcp.device);
   await openBrowser(tcpProp.tcp);
-  return { description: 'Browser tracing started' };
+  return { description: 'Browser opened' };
 }
 
 export async function closeAndroidBrowser() {
