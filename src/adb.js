@@ -1,16 +1,18 @@
 import adb from 'adbkit';
 import log from 'npmlog';
+import getPort from 'get-port';
 var Promise = require('bluebird');
 var adbClient = adb.createClient();
 
 class ABD {
   async portForwardTcp() {
+    let freePort = await getPort();
     return adbClient.listDevices().then(function(devices) {
       return Promise.map(devices, function(device) {
         return adbClient
           .forward(
             device.id,
-            'tcp:9222',
+            `tcp:${freePort}`,
             'localabstract:chrome_devtools_remote'
           )
           .then(function() {
@@ -18,7 +20,7 @@ class ABD {
             return {
               device: device.id,
               host: 'localhost',
-              port: '9222'
+              port: freePort
             };
           });
       });
@@ -29,7 +31,8 @@ class ABD {
     adbClient
       .startActivity(device, {
         wait: true,
-        component: 'com.android.chrome/com.google.android.apps.chrome.Main'
+        component: 'com.android.chrome/com.google.android.apps.chrome.Main',
+        data: 'taiko.gauge.org'
       })
       .catch(log.error);
   }
