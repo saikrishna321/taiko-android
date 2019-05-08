@@ -37,7 +37,8 @@ class ABD {
       .startActivity(device, {
         wait: true,
         component: 'com.android.chrome/com.google.android.apps.chrome.Main',
-        data: 'taiko.gauge.org'
+        data: 'taiko.gauge.org',
+        flags: 0x00008000
       })
       .catch(log.error);
   }
