@@ -4,7 +4,7 @@ let adb;
 let taikoSession;
 let page;
 let tcpProp;
-
+process.env['LOCAL_PROTOCOL'] = true;
 export const ID = 'android';
 
 export async function clientHandler(taiko) {
