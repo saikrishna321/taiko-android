@@ -30,4 +30,5 @@ jobs:
     displayName: 'List Packages'
 
   - script: |
-      npm test
+      npm install
+      LOCAL_PROTOCOL=true npm test
