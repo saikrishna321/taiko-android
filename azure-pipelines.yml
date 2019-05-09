@@ -24,3 +24,7 @@ jobs:
       echo '---'
       $ANDROID_HOME/platform-tools/adb devices
     displayName: 'start Android emulator'
+
+  - script: |
+      $ANDROID_HOME/platform-tools/adb shell pm list packages
+    displayName: 'List Packages'
