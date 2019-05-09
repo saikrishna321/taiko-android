@@ -28,3 +28,6 @@ jobs:
   - script: |
       $ANDROID_HOME/platform-tools/adb shell pm list packages
     displayName: 'List Packages'
+
+  - script: |
+      npm test
