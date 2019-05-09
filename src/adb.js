@@ -32,6 +32,12 @@ class ABD {
     this.assert(devices);
   }
 
+  async skipChromeWelcomeScreen(device) {
+    await adbClient
+      .shell(device, 'am set-debug-app --persistent com.android.chrome')
+      .then(adb.util.readAll);
+  }
+
   async openChrome(device) {
     adbClient
       .startActivity(device, {
