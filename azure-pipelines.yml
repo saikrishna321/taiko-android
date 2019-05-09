@@ -3,7 +3,11 @@ jobs:
   pool:
     vmImage: 'macOS-10.13'
   steps:
-  
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '8.x'
+    displayName: 'Install Node.js'
+
   - bash: |
       $ANDROID_HOME/tools/bin/sdkmanager --list
     displayName: 'list already installed Android packages'
