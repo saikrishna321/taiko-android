@@ -18,9 +18,11 @@ export async function openAndroidBrowser() {
   await adb.checkIfDevices();
   let tcpDetails = await adb.portForwardTcp();
   tcpProp = Object.assign({}, ...tcpDetails.map(tcp => ({ tcp })));
-  await adb.skipChromeWelcomeScreen(tcpProp.tcp.device);
-  await adb.openChrome(tcpProp.tcp.device);
-  await adb.currentActivity(tcpProp.tcp.device);
+  const device = tcpProp.tcp.device;
+  await adb.closeChrome(device);
+  await adb.skipChromeWelcomeScreen(device);
+  await adb.openChrome(device);
+  await adb.currentActivity(device);
   await openBrowser(tcpProp.tcp);
   return { description: 'Browser opened' };
 }

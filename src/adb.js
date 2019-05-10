@@ -36,11 +36,11 @@ class ABD {
     await adbClient
       .shell(
         device,
-        'echo "chrome --disable-fre --no-default-browser-check --no-first-run" > /data/local/tmp/chrome-command-line'
+        'echo "chrome --disable-fre --no-first-run" > /data/local/tmp/chrome-command-line'
       )
       .then(adb.util.readAll)
-      .then(() => {
-        log.info(' Skipped Chrome welcome screen');
+      .then(output => {
+        log.info(` Skipped Chrome welcome screen ${output}`);
       });
   }
 
@@ -62,8 +62,8 @@ class ABD {
         'dumpsys window windows | grep -E "mCurrentFocus|mFocusedApp"'
       )
       .then(adb.util.readAll)
-      .then(() => {
-        log.info(' Skipped Chrome welcome screen');
+      .then(output => {
+        log.info(`Current Activity ${output}`);
       });
   }
 
@@ -72,7 +72,7 @@ class ABD {
       .shell(device, 'am force-stop com.android.chrome')
       .then(adb.util.readAll)
       .then(() => {
-        log.info('Closed Chrome');
+        log.info(' Closed Chrome');
       });
   }
 

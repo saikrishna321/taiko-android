@@ -1,10 +1,11 @@
-import { goto, loadPlugin, click } from 'taiko';
+import { goto, loadPlugin, evaluate } from 'taiko';
 import {
   ID,
   clientHandler,
   openAndroidBrowser,
   closeAndroidBrowser
 } from '../src/index';
+import { getConsoleOutput } from '@jest/console';
 
 loadPlugin(ID, clientHandler);
 
@@ -18,5 +19,6 @@ afterEach(async () => {
 });
 test('Should open browser and send events', async () => {
   await goto('http://github.com');
-  await click('Sign up');
+  let version = await evaluate(() => navigator.appVersion);
+  console.log(version);
 });
