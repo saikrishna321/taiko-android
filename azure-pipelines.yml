@@ -29,16 +29,8 @@ jobs:
     displayName: 'start Android emulator'
 
   - script: |
-      $ANDROID_HOME/platform-tools/adb root
-      $ANDROID_HOME/platform-tools/adb remount
-      $ANDROID_HOME/platform-tools/adb shell
-      cd /system/app
-      rm Chrome -f -rR
-      cd /data/data
-      rm -r com.android.chrome
-      $ANDROID_HOME/platform-tools/adb install /apk/ChromePublic.apk
       $ANDROID_HOME/platform-tools/adb shell pm list packages
-    displayName: 'Install the Latest chrome'
+    displayName: 'List packages'
 
   - script: |
       npm install
