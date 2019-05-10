@@ -55,6 +55,18 @@ class ABD {
       .catch(log.error);
   }
 
+  async currentActivity(device) {
+    await adbClient
+      .shell(
+        device,
+        'dumpsys window windows | grep -E "mCurrentFocus|mFocusedApp"'
+      )
+      .then(adb.util.readAll)
+      .then(() => {
+        log.info(' Skipped Chrome welcome screen');
+      });
+  }
+
   async closeChrome(device) {
     adbClient
       .shell(device, 'am force-stop com.android.chrome')

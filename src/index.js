@@ -20,6 +20,7 @@ export async function openAndroidBrowser() {
   tcpProp = Object.assign({}, ...tcpDetails.map(tcp => ({ tcp })));
   await adb.skipChromeWelcomeScreen(tcpProp.tcp.device);
   await adb.openChrome(tcpProp.tcp.device);
+  await adb.currentActivity(tcpProp.tcp.device);
   await openBrowser(tcpProp.tcp);
   return { description: 'Browser opened' };
 }
