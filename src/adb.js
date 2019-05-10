@@ -34,7 +34,10 @@ class ABD {
 
   async skipChromeWelcomeScreen(device) {
     await adbClient
-      .shell(device, 'am set-debug-app --persistent com.android.chrome')
+      .shell(
+        device,
+        'echo "chrome --disable-fre --no-default-browser-check --no-first-run" > /data/local/tmp/chrome-command-line'
+      )
       .then(adb.util.readAll)
       .then(() => {
         log.info(' Skipped Chrome welcome screen');

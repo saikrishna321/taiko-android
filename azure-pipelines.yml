@@ -23,7 +23,7 @@ jobs:
   - script: |
       $ANDROID_HOME/platform-tools/adb devices
       echo '---'
-      nohup $ANDROID_HOME/emulator/emulator -avd test_android_emulator -no-snapshot -dns-server 8.8.8.8 > /dev/null 2>&1 & $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
+      nohup $ANDROID_HOME/emulator/emulator -avd test_android_emulator -no-snapshot -dns-server 8.8.8.8 > /dev/null 2>&1 & $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 20000; done; input keyevent 82'
       echo '---'
       $ANDROID_HOME/platform-tools/adb devices
     displayName: 'start Android emulator'
