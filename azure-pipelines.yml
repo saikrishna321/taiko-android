@@ -13,8 +13,8 @@ jobs:
   - bash: |
       chmod +x ./genymotion-3.0.1-linux_x64.bin
       echo "y" | ./genymotion-3.0.1-linux_x64.bin
-      ENV PATH="${PATH}:/opt/genymobile/genymotion/"
+      echo $PATH
     displayName: 'Run Genymotion installer'
   - script: |
-      gmtool help
+      /home/vsts/work/1/s/genymotion/gmtool help
     displayName: 'Run GMTool'
