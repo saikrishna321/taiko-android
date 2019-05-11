@@ -1,37 +1,20 @@
 jobs:
 - job: macOS
   pool:
-    vmImage: 'macOS-10.13'
+    vmImage: 'ubuntu-16.04'
   steps:
   - task: NodeTool@0
     inputs:
       versionSpec: '8.x'
 
   - bash: |
-      $ANDROID_HOME/tools/bin/sdkmanager --list
-    displayName: 'list already installed Android packages'
+      RUN wget -q "https://dl.genymotion.com/releases/genymotion-3.0.1/genymotion-3.0.1-linux_x64.bin"
+    displayName: 'Download Genymotion Installer'
   - bash: |
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-28;google_apis;x86'
-    displayName: 'install Android image'
+      RUN chmod +x ./genymotion-2.12.0-linux_x64.bin
+      RUN yes | ./genymotion-2.12.0-linux_x64.bin
+      ENV PATH="${PATH}:/opt/genymobile/genymotion/"
+    displayName: 'Run Genymotion installer'
   - script: |
-      $ANDROID_HOME/emulator/emulator -list-avds
-      echo '---'
-      echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n test_android_emulator -k 'system-images;android-28;google_apis;x86' --force
-      echo '---'
-      $ANDROID_HOME/emulator/emulator -list-avds
-    displayName: 'create AVD'
-  - script: |
-      $ANDROID_HOME/platform-tools/adb devices
-      echo '---'
-      nohup $ANDROID_HOME/emulator/emulator -avd test_android_emulator -no-snapshot -dns-server 8.8.8.8 -writable-system > /dev/null 2>&1 & $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 30; done; input keyevent 82'
-      echo '---'
-      $ANDROID_HOME/platform-tools/adb devices
-    displayName: 'start Android emulator'
-
-  - script: |
-      $ANDROID_HOME/platform-tools/adb shell pm list packages
-    displayName: 'List packages'
-
-  - script: |
-      npm install
-      npm test
+      gmtool help
+    displayName: 'Run GMTool'

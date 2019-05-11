@@ -5,7 +5,6 @@ import {
   openAndroidBrowser,
   closeAndroidBrowser
 } from '../src/index';
-import { getConsoleOutput } from '@jest/console';
 
 loadPlugin(ID, clientHandler);
 
@@ -18,7 +17,7 @@ afterEach(async () => {
   await closeAndroidBrowser();
 });
 test('Should open browser and send events', async () => {
-  await goto('http://github.com');
+  await goto('http://the-internet.herokuapp.com/');
   let version = await evaluate(() => navigator.appVersion);
   console.log(version);
 });
