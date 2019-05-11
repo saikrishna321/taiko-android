@@ -8,6 +8,8 @@
 
 A plugin to run web tests on android devices and emulator using Taiko
 
+[![Build Status](https://dev.azure.com/saikrishna321/taiko-android/_apis/build/status/saikrishna321.taiko-android?branchName=master)](https://dev.azure.com/saikrishna321/taiko-android/_build/latest?definitionId=4&branchName=master)
+
 [![Demo Doccou alpha](images/video.gif)](https://youtu.be/HRdDJDA7S2I)
 ## Usage
 
