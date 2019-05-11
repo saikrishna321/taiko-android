@@ -45,7 +45,7 @@ class ABD {
   }
 
   async openChrome(device) {
-    adbClient
+    await adbClient
       .startActivity(device, {
         wait: true,
         component: 'com.android.chrome/com.google.android.apps.chrome.Main',
@@ -68,7 +68,7 @@ class ABD {
   }
 
   async closeChrome(device) {
-    adbClient
+    await adbClient
       .shell(device, 'am force-stop com.android.chrome')
       .then(adb.util.readAll)
       .then(() => {
