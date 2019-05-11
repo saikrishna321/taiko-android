@@ -20,7 +20,7 @@ jobs:
 
   - bash: |
      instance=$(gmsaas instances start be9897e5-6de3-43ab-9002-4a08bba1d4ca TaikoChrome)
-     echo $instance
+     export uid=$instance
      gmsaas instances adbconnect $instance
     displayName: 'Launch emulator with chrome template to run taiko test'
 
@@ -30,6 +30,6 @@ jobs:
     displayName: 'Run Test on Android Chrome'
 
   - bash: |
-     gmsaas instances stop $instance
+     gmsaas instances stop $uid
     displayName: 'Stop Emulator'
   
