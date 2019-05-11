@@ -65,6 +65,20 @@ class ABD {
       .then(output => {
         log.info(`Current Activity ${output}`);
       });
+
+    await adbClient
+      .shell(device, 'uiautomator dump')
+      .then(adb.util.readAll)
+      .then(output => {
+        log.info(`Dump XML --- ${output}`);
+      });
+
+    await adbClient
+      .shell(device, 'cat /sdcard/window_dump.xml')
+      .then(adb.util.readAll)
+      .then(output => {
+        log.info(`DOM --- ${output}`);
+      });
   }
 
   async closeChrome(device) {
