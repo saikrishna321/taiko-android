@@ -52,3 +52,9 @@ Close chrome browser.
 ```js
 closeAndroidBrowser();
 ```
+
+
+## Thanks for support 
+<h3 align="left">
+	<a href= "https://www.genymotion.com/"><img src="images/genymotion.png" alt="TaikoAndroid" width="50%"></a>
+</h3>
