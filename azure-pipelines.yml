@@ -8,13 +8,5 @@ jobs:
       versionSpec: '8.x'
 
   - bash: |
-      wget -q "https://dl.genymotion.com/releases/genymotion-3.0.1/genymotion-3.0.1-linux_x64.bin"
+      pip3 install gmsaas
     displayName: 'Download Genymotion Installer'
-  - bash: |
-      chmod +x ./genymotion-3.0.1-linux_x64.bin
-      echo "y" | ./genymotion-3.0.1-linux_x64.bin
-      echo $PATH
-    displayName: 'Run Genymotion installer'
-  - script: |
-      /home/vsts/work/1/s/genymotion/gmtool help
-    displayName: 'Run GMTool'
