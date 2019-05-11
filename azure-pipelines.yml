@@ -1,0 +1,28 @@
+jobs:
+- job: macOS
+  pool:
+    vmImage: 'macOS-10.13'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '8.x'
+
+  - bash: |
+      pip3 install gmsaas
+    displayName: 'Download Genymotion Installer'
+  - bash: |
+      gmsaas config set android-sdk-path $ANDROID_HOME
+    displayName: 'Set Android Sdk Path'
+   
+  - bash: |
+      gmsaas auth login "$(user)" "$(pass)"
+    displayName: 'Access Genycloud'
+
+  - bash: |
+     instance=$(gmsaas instances start be9897e5-6de3-43ab-9002-4a08bba1d4ca TaikoChrome)
+     gmsaas instances adbconnect $instance
+     npm install
+     npm test
+     gmsaas instances stop $instance
+    displayName: 'Launch Emulator - Taiko test - Close Emulator'
+  

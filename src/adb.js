@@ -32,8 +32,20 @@ class ABD {
     this.assert(devices);
   }
 
+  async skipChromeWelcomeScreen(device) {
+    await adbClient
+      .shell(
+        device,
+        'echo "chrome --disable-fre --no-first-run" > /data/local/tmp/chrome-command-line'
+      )
+      .then(adb.util.readAll)
+      .then(output => {
+        log.info(` Skipped Chrome welcome screen ${output}`);
+      });
+  }
+
   async openChrome(device) {
-    adbClient
+    await adbClient
       .startActivity(device, {
         wait: true,
         component: 'com.android.chrome/com.google.android.apps.chrome.Main',
@@ -43,12 +55,38 @@ class ABD {
       .catch(log.error);
   }
 
+  async currentActivity(device) {
+    await adbClient
+      .shell(
+        device,
+        'dumpsys window windows | grep -E "mCurrentFocus|mFocusedApp"'
+      )
+      .then(adb.util.readAll)
+      .then(output => {
+        log.info(`Current Activity ${output}`);
+      });
+
+    await adbClient
+      .shell(device, 'uiautomator dump')
+      .then(adb.util.readAll)
+      .then(output => {
+        log.info(`Dump XML --- ${output}`);
+      });
+
+    await adbClient
+      .shell(device, 'cat /sdcard/window_dump.xml')
+      .then(adb.util.readAll)
+      .then(output => {
+        log.info(`DOM --- ${output}`);
+      });
+  }
+
   async closeChrome(device) {
-    adbClient
+    await adbClient
       .shell(device, 'am force-stop com.android.chrome')
       .then(adb.util.readAll)
       .then(() => {
-        log.info('Closed Chrome');
+        log.info(' Closed Chrome');
       });
   }
 

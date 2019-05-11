@@ -4,7 +4,7 @@ let adb;
 let taikoSession;
 let page;
 let tcpProp;
-
+process.env['LOCAL_PROTOCOL'] = true;
 export const ID = 'android';
 
 export async function clientHandler(taiko) {
@@ -18,7 +18,11 @@ export async function openAndroidBrowser() {
   await adb.checkIfDevices();
   let tcpDetails = await adb.portForwardTcp();
   tcpProp = Object.assign({}, ...tcpDetails.map(tcp => ({ tcp })));
-  await adb.openChrome(tcpProp.tcp.device);
+  const device = tcpProp.tcp.device;
+  await adb.closeChrome(device);
+  await adb.skipChromeWelcomeScreen(device);
+  await adb.openChrome(device);
+  await adb.currentActivity(device);
   await openBrowser(tcpProp.tcp);
   return { description: 'Browser opened' };
 }
