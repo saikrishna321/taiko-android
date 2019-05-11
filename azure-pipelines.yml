@@ -10,3 +10,10 @@ jobs:
   - bash: |
       pip3 install gmsaas
     displayName: 'Download Genymotion Installer'
+  - bash: |
+      gmsaas config set android-sdk-path $ANDROID_HOME
+    displayName: 'Set Android Sdk Path'
+
+  - bash: |
+      gmsaas --help
+    displayName: 'Run Genymotion'
