@@ -8,11 +8,11 @@ jobs:
       versionSpec: '8.x'
 
   - bash: |
-      RUN wget -q "https://dl.genymotion.com/releases/genymotion-3.0.1/genymotion-3.0.1-linux_x64.bin"
+      wget -q "https://dl.genymotion.com/releases/genymotion-3.0.1/genymotion-3.0.1-linux_x64.bin"
     displayName: 'Download Genymotion Installer'
   - bash: |
-      RUN chmod +x ./genymotion-2.12.0-linux_x64.bin
-      RUN yes | ./genymotion-2.12.0-linux_x64.bin
+      chmod +x ./genymotion-2.12.0-linux_x64.bin
+      echo "y" | ./genymotion-2.12.0-linux_x64.bin
       ENV PATH="${PATH}:/opt/genymobile/genymotion/"
     displayName: 'Run Genymotion installer'
   - script: |
