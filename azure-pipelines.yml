@@ -27,8 +27,8 @@ jobs:
   - script: |
      npm install
      npm test
-     continueOnError: true
     displayName: 'Taiko test'
+    continueOnError: true
   
   - bash: |
       echo "$instance"
