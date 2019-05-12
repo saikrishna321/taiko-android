@@ -21,5 +21,5 @@ test('Should open browser and send events', async () => {
   let version = await evaluate(
     () => navigator.appVersion.match(/.*Chrome\/([0-9.]+)/)[1]
   );
-  expect(version.result).toBe('74.0.3729.136');
+  expect(version.result).toBe('74.0.3729');
 });
