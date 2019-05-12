@@ -18,7 +18,7 @@ jobs:
       gmsaas auth login "$(user)" "$(pass)"
     displayName: 'Access Genycloud'
 
-  - bash: |
+  - script: |
      instance=$(gmsaas instances start be9897e5-6de3-43ab-9002-4a08bba1d4ca TaikoChrome)
      gmsaas instances adbconnect $instance
      npm install
