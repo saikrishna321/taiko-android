@@ -18,11 +18,20 @@ jobs:
       gmsaas auth login "$(user)" "$(pass)"
     displayName: 'Access Genycloud'
 
+  - bash: |
+      instance=$(gmsaas instances start be9897e5-6de3-43ab-9002-4a08bba1d4ca TaikoChrome)
+      export instance
+      gmsaas instances adbconnect $instance
+    displayName: 'Open Emulator'
+
   - script: |
-     instance=$(gmsaas instances start be9897e5-6de3-43ab-9002-4a08bba1d4ca TaikoChrome)
-     gmsaas instances adbconnect $instance
      npm install
      npm test
-     gmsaas instances stop $instance
-    displayName: 'Launch Emulator - Taiko test - Close Emulator'
+    displayName: 'Taiko test'
+  
+  - bash: |
+      echo "$instance"
+      echo $instance
+      gmsaas instances stop $instance
+    displayName: 'Close Emulator'
   
