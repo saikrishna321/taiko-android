@@ -20,7 +20,8 @@ jobs:
 
   - script: |
       instance=$(gmsaas instances start be9897e5-6de3-43ab-9002-4a08bba1d4ca TaikoChrome)
-      Write-Host '##vso[task.setvariable variable=sauce] testing'
+      echo '##vso[task.setvariable variable=sauce] testing'
+      echo $sauce
       gmsaas instances adbconnect $instance
     displayName: 'Open Emulator'
 
@@ -31,7 +32,7 @@ jobs:
     continueOnError: true
   
   - script: |
-      echo "$sauce"
+      echo $sauce
       gmsaas instances stop $sauce
     displayName: 'Close Emulator'
   
