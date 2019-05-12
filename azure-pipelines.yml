@@ -21,6 +21,8 @@ jobs:
   - bash: |
       instance=$(gmsaas instances start be9897e5-6de3-43ab-9002-4a08bba1d4ca TaikoChrome)
       export instance
+      echo "$instance"
+      echo $instance
       gmsaas instances adbconnect $instance
     displayName: 'Open Emulator'
 
