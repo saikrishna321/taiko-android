@@ -18,6 +18,8 @@ afterEach(async () => {
 });
 test('Should open browser and send events', async () => {
   await goto('http://the-internet.herokuapp.com/');
-  let version = await evaluate(() => navigator.appVersion);
-  console.log(version);
+  let version = await evaluate(
+    () => navigator.appVersion.match(/.*Chrome\/([0-9.]+)/)[1]
+  );
+  expect(version.result).toBe('69.0.3497.100');
 });
