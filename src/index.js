@@ -1,19 +1,27 @@
 import ADB from './adb';
-import { openBrowser } from 'taiko';
 let adb;
 let taikoSession;
 let page;
 let tcpProp;
 process.env['LOCAL_PROTOCOL'] = true;
+let _openBrowser;
+let _closeBrowser;
+let _eventEmitter;
+
 export const ID = 'android';
 
-export async function clientHandler(taiko) {
-  taikoSession = await taiko.client();
-  page = await taiko.client().Page;
-  Promise.all([page.enable()]);
+export async function clientHandler(taiko, eventEmitter) {
+  _eventEmitter = eventEmitter;
+  _openBrowser = taiko.openBrowser;
+  _closeBrowser = taiko.closeBrowser;
+  _eventEmitter.addListener('createdSession', async () => {
+    taikoSession = await taiko.client();
+    page = taikoSession.Page;
+    Promise.all([page.enable()]);
+  });
 }
 
-export async function openAndroidBrowser() {
+export async function openBrowser() {
   adb = new ADB();
   await adb.checkIfDevices();
   let tcpDetails = await adb.portForwardTcp();
@@ -23,13 +31,11 @@ export async function openAndroidBrowser() {
   await adb.skipChromeWelcomeScreen(device);
   await adb.openChrome(device);
   await adb.currentActivity(device);
-  await openBrowser(tcpProp.tcp);
+  await _openBrowser(tcpProp.tcp);
   return { description: 'Browser opened' };
 }
 
-export async function closeAndroidBrowser() {
-  await page.close();
-  await taikoSession.removeAllListeners();
-  await taikoSession.close();
+export async function closeBrowser() {
+  await _closeBrowser();
   await adb.closeChrome(tcpProp.tcp.device);
 }
