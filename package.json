@@ -7,7 +7,7 @@
     "lib"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "npm install -g . && TAIKO_PLUGIN='taiko-android' jest ./__tests__/**.spec.js",
     "build": "babel src -d lib",
     "prepublish": "babel src -d lib"
   },
@@ -27,12 +27,12 @@
   "homepage": "https://github.com/saikrishna321/taiko-android#readme",
   "dependencies": {
     "adbkit": "^2.11.1",
-    "taiko": "git://github.com/getgauge/taiko.git",
     "get-port": "^5.0.0",
     "npmlog": "^4.1.2",
     "bluebird": "^3.5.4"
   },
   "devDependencies": {
+    "taiko": "git://github.com/getgauge/taiko.git",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
