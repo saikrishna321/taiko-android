@@ -7,7 +7,7 @@
     "lib"
   ],
   "scripts": {
-    "test": "npm install -g . && TAIKO_PLUGIN='taiko-android' jest ./__tests__/**.spec.js",
+    "test": "npm run build && npm install -g . && TAIKO_PLUGIN='taiko-android' jest ./__tests__/**.spec.js",
     "build": "babel src -d lib",
     "prepublish": "babel src -d lib"
   },
