@@ -10,7 +10,7 @@ let _eventEmitter;
 
 export const ID = 'android';
 
-export async function clientHandler(taiko, eventEmitter) {
+export function init(taiko, eventEmitter) {
   _eventEmitter = eventEmitter;
   _openBrowser = taiko.openBrowser;
   _closeBrowser = taiko.closeBrowser;
