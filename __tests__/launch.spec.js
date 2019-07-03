@@ -1,20 +1,12 @@
-import { goto, loadPlugin, evaluate } from 'taiko';
-import {
-  ID,
-  clientHandler,
-  openAndroidBrowser,
-  closeAndroidBrowser
-} from '../src/index';
-
-loadPlugin(ID, clientHandler);
+import { openBrowser, closeBrowser, goto, evaluate } from 'taiko';
 
 jest.setTimeout(30000);
 beforeEach(async () => {
-  await openAndroidBrowser();
+  await openBrowser();
 });
 
 afterEach(async () => {
-  await closeAndroidBrowser();
+  await closeBrowser();
 });
 test('Should open browser and send events', async () => {
   await goto('http://the-internet.herokuapp.com/');
