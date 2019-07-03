@@ -15,7 +15,9 @@ jobs:
     displayName: 'Set Android Sdk Path'
    
   - bash: |
-      gmsaas auth login "$(user)"
+  
+      gmsaas auth login $(user)
+
     displayName: 'Access Genycloud'
 
   - script: |
