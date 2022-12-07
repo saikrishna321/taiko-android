@@ -46,7 +46,7 @@
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-prettier": "^3.0.1",
     "pretty-quick": "^1.10.0",
-    "lint-staged": "^8.1.4"
+    "lint-staged": "^13.1.0"
   },
   "lint-staged": {
     "**/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
